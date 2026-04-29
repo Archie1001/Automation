@@ -1,18 +1,18 @@
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage {
+import java.time.Duration;
 
-    private static final Logger logger = LogManager.getLogger(BasePage.class);
+public abstract class BasePage {
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected static String url = "https://www.x-kom.pl";
 
-    public static void main(String[] args) {
-
-        logger.info("info message");
-        logger.debug("debug message");
-        logger.warn("warning message");
-        logger.error("error message");
-        logger.fatal("fatal message");
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        PageFactory.initElements(driver, this);
     }
 }
-
-
